@@ -15,6 +15,9 @@ DEBUG = os.getenv('DEBUG', 'NO').lower() in ('on', 'true', 'y', 'yes')
 
 ALLOWED_HOSTS = ['*']
 
+# App-specific config
+CRA_APP_NAME = 'client'
+
 
 # Application definition
 
@@ -24,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cra_helper',  # cra_helper MUST be placed above django.contrib.staticfiles
     'django.contrib.staticfiles',
     # apps
     'stockify.apps.market_analyzer',
@@ -52,6 +56,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cra_helper.context_processors.static',
             ],
         },
     },
@@ -113,3 +118,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_FINDERS = [
+    # Django defaults
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # A finder to pull in asset-manifest.json
+    'cra_helper.finders.CRAManifestFinder',
+]

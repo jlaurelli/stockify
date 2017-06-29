@@ -1,4 +1,6 @@
+bleach==2.0.0
 Django==1.10.6
+django-cra-helper==1.0.1
 gunicorn==19.7.1
 psycopg2==2.7.1
 redis==2.10.3
