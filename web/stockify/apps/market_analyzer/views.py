@@ -5,7 +5,8 @@ from .models import Investment, Portfolio
 
 
 class HomeView(TemplateView):
-    template_name = "home.html"
+    template_name = "../client/build/index.html"
+    # template_name = "home.html"
 
 
 class InvestmentView(TemplateView):
